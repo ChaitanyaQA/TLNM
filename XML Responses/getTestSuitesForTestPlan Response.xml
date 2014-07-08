@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<methodResponse>
+  <params>
+    <param>
+      <value>
+        <array><data>
+  <value><struct>
+  <member><name>name</name><value><string>Cucu_Suite</string></value></member>
+  <member><name>id</name><value><string>13</string></value></member>
+  <member><name>parent_id</name><value><string>12</string></value></member>
+</struct></value>
+</data></array>
+      </value>
+    </param>
+  </params>
+</methodResponse>
