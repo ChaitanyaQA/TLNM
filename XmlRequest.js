@@ -126,7 +126,138 @@ uploadTestCaseAttachment:function(devKey,testcaseid,title,filename,content)
 	'<member><name>content</name><value><string>'+content+'</string></value></member>'+
 	'</struct></value></param>'+
 	'</params></methodCall>';
-}
+},
 
+getProjectPlatforms:function(devKey,testprojectid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getProjectPlatforms</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestCaseCustomFieldDesignValue:function(devKey,testprojectid,testcaseexternalid,customfieldname,details,version)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getTestCaseCustomFieldDesignValue</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testcaseexternalid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+	'<member><name>customfieldname</name><value><string>'+customfieldname+'</string></value></member>'+
+	'<member><name>details</name><value><string>'+details+'</string></value></member>'+
+	'<member><name>version</name><value><int>'+version+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestCasesForTestPlan:function(devKey,testplanid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getTestCasesForTestPlan</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testplanid</name><value><int>'+testplanid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestCasesForTestSuite:function(devKey,testprojectid,testsuiteid)
+{ return '<?xml version="1.0"?>'+
+'<methodCall>'+
+'<methodName>tl.getTestCasesForTestSuite</methodName>'+
+'<params>'+
+'<param><value><struct>'+
+  '<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+  '<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+  '<member><name>testsuiteid</name><value><int>'+testsuiteid+'</int></value></member>'+
+  '<member><name>deep</name><value><boolean>1</boolean></value></member>'+
+  '<member><name>details</name><value><string>full</string></value></member>'+
+  '<member><name>getkeywords</name><value><boolean>1</boolean></value></member>'+
+'</struct></value></param>'+
+'</params></methodCall>';
+},
+
+getTestProjectByName:function(devKey,testprojectname)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getTestProjectByName</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testprojectname</name><value><string>'+testprojectname+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestSuitesForTestSuite:function(devKey,testsuiteid)
+{	return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getTestSuitesForTestSuite</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testsuiteid</name><value><int>'+testsuiteid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getUserByID:function(devKey,userid)
+{	return	'<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getUserByID</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>userid</name><value><int>'+userid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getUserByLogin:function(devKey,user)
+{	return	'<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getUserByLogin</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>user</name><value><string>'+user+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestCasesForTestSuite:function(devKey,testprojectid,testsuiteid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getTestCasesForTestSuite</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+	'<member><name>testsuiteid</name><value><int>'+testsuiteid+'</int></value></member>'+
+	'<member><name>deep</name><value><boolean>1</boolean></value></member>'+
+	'<member><name>details</name><value><string>full</string></value></member>'+
+	'<member><name>getkeywords</name><value><boolean>1</boolean></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestCaseIDByName:function(devKey,testcasename)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getTestCaseIDByName</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testcasename</name><value><string>'+testcasename+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+}
 
 };
