@@ -1,7 +1,9 @@
 var http = require('http');
 var xpath 	= require('xpath');
 var dom 	= require('xmldom').DOMParser;
-
+var SimpleConvertXML = require('simpleConvert-XML'),
+		DOMParser = require('xmldom').DOMParser;
+		
 module.exports={
 
 postCompose:function(url){
@@ -35,58 +37,34 @@ req.end();
 },
 
 getJsObjectByXmlResponse:function(response){
-
     var parser=new dom().parseFromString(response);
-
-	//console.log(response);
     if(xpath.select("//data",parser).length>0)
-    response=xpath.select("//data",parser)[0].toString();
-	
-     parser=new dom().parseFromString(response);
-      if(xpath.select("//param",parser).length>0)
-     response=xpath.select("//param",parser)[0].toString();
-	 
-
-  
-
+		response=xpath.select("//data",parser)[0].toString();
+		parser=new dom().parseFromString(response);
+    if(xpath.select("//param",parser).length>0)
+		response=xpath.select("//param",parser)[0].toString();
     var changeAttrToTag=/<member><name>(.*)<\/name><value><(string|int)>((.|[\r\n])*?)<\/\2><\/value><\/member>/;
-	
 	var nullyfy=/<member><name>.*?<string\/>.*?<\/member>/;
-	
 	if(nullyfy.test(response))
-    response=response.replace(/<member><name>.*?<string\/>.*?<\/member>/g,'');
-	
-	
+		response=response.replace(/<member><name>.*?<string\/>.*?<\/member>/g,'');
     var flag=changeAttrToTag.test(response);
     var changedTagResponse="";
-
-
-    if(flag)
-    {
+    if(flag){
         response=response.replace(/<member><name>(.*)<\/name><value><(string|int)>((.|[\r\n])*?)<\/\2><\/value><\/member>/g, "<$1>$3</$1>");
-        var recusiveRegx=/<member><name>(.*)?<\/name><value><struct>(((.|[\r\n])(?!<struct>))*?)<\/struct><\/value><\/member>/;
-        var recursiveflag=recusiveRegx.test(response);
-
-            while(recursiveflag){
-              response=response.replace(/<member><name>(.*)?<\/name><value><struct>(((.|[\r\n])(?!<struct>))*?)<\/struct><\/value><\/member>/, "<_$1>$2</_$1>");
-              recursiveflag=recusiveRegx.test(response);
-            }
-        response=response.replace(/<member><name>(.*)?<\/name><value><struct>(((.|[\r\n])(?!<struct>))*?)<\/struct><\/value><\/member>/, "<$1>$2</$1>");
+    var recusiveRegx=/<member><name>(.*)?<\/name><value><struct>(((.|[\r\n])(?!<struct>))*?)<\/struct><\/value><\/member>/;
+    var recursiveflag=recusiveRegx.test(response);
+    while(recursiveflag){
+        response=response.replace(/<member><name>(.*)?<\/name><value><struct>(((.|[\r\n])(?!<struct>))*?)<\/struct><\/value><\/member>/, "<_$1>$2</_$1>");
+        recursiveflag=recusiveRegx.test(response);
+        }
+    response=response.replace(/<member><name>(.*)?<\/name><value><struct>(((.|[\r\n])(?!<struct>))*?)<\/struct><\/value><\/member>/, "<$1>$2</$1>");
     }
-
+	var parser=new dom().parseFromString(response);
 	
-
-var parser=new dom().parseFromString(response);
-var SimpleConvertXML = require('./simpleConvertXML'),
-    DOMParser = require('xmldom').DOMParser;
-var xmlNode = new DOMParser().parseFromString(response);
-var json=SimpleConvertXML.getXMLAsObj(xmlNode);
-
-//console.log(JSON.stringify(json));
-
+	var xmlNode = new DOMParser().parseFromString(response);
+	var json=SimpleConvertXML.getXMLAsObj(xmlNode);
     var returnObject;
-    if(json.data)
-    {
+    if(json.data){
     returnObject=json.data.value;
     }else{
       if(json.param)
@@ -94,12 +72,6 @@ var json=SimpleConvertXML.getXMLAsObj(xmlNode);
         returnObject=json.param.value;
       }
     }
-
-return returnObject;
-
-
+	return returnObject;
 }
-
-
-
 };
