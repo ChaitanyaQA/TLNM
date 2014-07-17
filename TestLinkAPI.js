@@ -201,20 +201,111 @@ TestLinkApi.prototype.getUrl=function(){
 };
 	
 	
+TestLinkApi.prototype.getExecCountersByBuild=function(testPlanId,callback){
+	var post=utilites.postCompose(this.TestUrl);
+	var body=xmlRequest.getExecCountersByBuild(this.devkey,testPlanId);
+	utilites.postrequest(post,body,function(response){
+	var execCounters=utilites.getJsObjectByXmlResponse(response);
+	callback(execCounters);
+		});
+};
 
-
-
+TestLinkApi.prototype.getFirstLevelTestSuitesForTestProject=function(testProjectId,callback){
+	var post=utilites.postCompose(this.TestUrl);
+	var body=xmlRequest.getFirstLevelTestSuitesForTestProject(this.devkey,testProjectId);
+	utilites.postrequest(post,body,function(response){
+	var firstLevelSuite=utilites.getJsObjectByXmlResponse(response);
+	callback(firstLevelSuite);
+		});
+};
 	
+TestLinkApi.prototype.getFullPath=function(nodeId,callback){
+	var post=utilites.postCompose(this.TestUrl);
+	var body=xmlRequest.getFullPath(this.devkey,nodeId);
+	utilites.postrequest(post,body,function(response){
+	var fullpath=utilites.getJsObjectByXmlResponse(response);
+	callback(fullpath);
+		});
+};
+
+TestLinkApi.prototype.getLastExecutionResult=function(testplanid,testcaseexternalid,callback){
+    var post=utilites.postCompose(this.TestUrl);
+    var body=xmlRequest.getLastExecutionResult(this.devkey,testplanid,testcaseexternalid);
+    utilites.postrequest(post,body,function(response){
+	console.log(response);
+    var lastresult=utilites.getJsObjectByXmlResponse(response);
+    callback(lastresult);
+        });
+};
+
+ TestLinkApi.prototype.removePlatformFromTestPlan=function(testplanid,platformname,callback){
+	var post=utilites.postCompose(this.TestUrl);
+	var body=xmlRequest.removePlatformFromTestPlan(this.devkey,testplanid,platformname);
+	utilites.postrequest(post,body,function(response){
+	var removeplatform=utilites.getJsObjectByXmlResponse(response);
+	callback(removeplatform);
+		});
+ };
+
+ TestLinkApi.prototype.reportTCResult=function(testplanid,testcaseexternalid,buildid,notes,status,platformname,user,bugid,callback){
+    var post=utilites.postCompose(this.TestUrl);
+    var body=xmlRequest.reportTCResult(this.devkey,testplanid,testcaseexternalid,buildid,notes,status,platformname,"","admin");
+    utilites.postrequest(post,body,function(response){
+    var tcresult=utilites.getJsObjectByXmlResponse(response);
+    callback(tcresult);
+        });
+};
+ 
+ TestLinkApi.prototype.reportTCResultOverwrite=function(testplanid,testcaseexternalid,buildid,notes,status,platformname,overwrite,user,bugid,callback){
+    var post=utilites.postCompose(this.TestUrl);
+    var body=xmlRequest.reportTCResultOverwrite(this.devkey,testplanid,testcaseexternalid,buildid,notes,status,platformname,overwrite,"admin");
+    utilites.postrequest(post,body,function(response){
+    var resultoverwrite=utilites.getJsObjectByXmlResponse(response);
+    callback(resultoverwrite);
+        });
+};
+ 
+ TestLinkApi.prototype.setTestCaseExecutionType=function(testprojectid,testcaseexternalid,version,executiontype,callback){
+	var post=utilites.postCompose(this.TestUrl);
+	var body=xmlRequest.setTestCaseExecutionType(this.devkey,testprojectid,testcaseexternalid,version,executiontype);
+	utilites.postrequest(post,body,function(response){
+	var removeplatform=utilites.getJsObjectByXmlResponse(response);
+	callback(removeplatform);
+		});
+ };
 
 
+ TestLinkApi.prototype.getTestLinkVersion=function(callback){
+	var post=utilites.postCompose(this.TestUrl);
+	var body=xmlRequest.getTestLinkVersion(this.devkey);
+	utilites.postrequest(post,body,function(response){
+	console.log(response);
+	var testlinkversion=utilites.getJsObjectByXmlResponse(response);
+	callback(testlinkversion);
+		});
+ };
+ 
+ TestLinkApi.prototype.updateTestCase=function(testcaseexternalid,version,summary,callback){
+    var post=utilites.postCompose(this.TestUrl);
+    var body=xmlRequest.updateTestCase(this.devkey,testcaseexternalid,version,summary);
+    utilites.postrequest(post,body,function(response){
+    var updatetc=utilites.getJsObjectByXmlResponse(response);
+    callback(updatetc);
+        });
+};
+
+  TestLinkApi.prototype.updateTestCaseCustomFieldDesignValue=function(testprojectid,testcaseexternalid,version,custonfiledname,custonfiledvalue,callback){
+    var post=utilites.postCompose(this.TestUrl);
+    var body=xmlRequest.updateTestCaseCustomFieldDesignValue(this.devkey,testprojectid,testcaseexternalid,version,custonfiledname,custonfiledvalue);
+    utilites.postrequest(post,body,function(response){
+    var customfiled=utilites.getJsObjectByXmlResponse(response);
+    callback(customfiled);
+        });
+};
  
 
 
 
-
-
-
- 
 
 
 

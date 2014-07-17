@@ -258,6 +258,166 @@ getTestCaseIDByName:function(devKey,testcasename)
 	'<member><name>testcasename</name><value><string>'+testcasename+'</string></value></member>'+
 	'</struct></value></param>'+
 	'</params></methodCall>';
+},
+
+getExecCountersByBuild:function(devKey,testplanid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getExecCountersByBuild</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testplanid</name><value><int>'+testplanid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getFirstLevelTestSuitesForTestProject:function(devKey,testprojectid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getFirstLevelTestSuitesForTestProject</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getFullPath:function(devKey,nodeid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getFullPath</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>nodeid</name><value><int>'+nodeid+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getLastExecutionResult:function(devKey,testplanid,testcaseexternalid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.getLastExecutionResult</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testplanid</name><value><int>'+testplanid+'</int></value></member>'+
+	'<member><name>testcaseexternalid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+removePlatformFromTestPlan:function(devKey,testplanid,platformname)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.removePlatformFromTestPlan</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testplanid</name><value><int>'+testplanid+'</int></value></member>'+
+	'<member><name>platformname</name><value><string>'+platformname+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+
+reportTCResult:function(devKey,testplanid,testcaseexternalid,buildid,notes,status,platformname,user,bugid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.reportTCResult</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testplanid</name><value><int>'+testplanid+'</int></value></member>'+
+	'<member><name>testcaseid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'<member><name>buildid</name><value><string>'+buildid+'</string></value></member>'+
+	'<member><name>notes</name><value><string>'+notes+'</string></value></member>'+
+	'<member><name>status</name><value><string>'+status+'</string></value></member>'+
+	'<member><name>platformname</name><value><string>'+platformname+'</string></value></member>'+
+	//'<member><name>overwrite</name><value><boolean>'+overwrite+'</boolean></value></member>'+
+	'<member><name>user</name><value><string>'+user+'</string></value></member>'+
+	'<member><name>bugid</name><value><string>'+bugid+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+reportTCResultOverwrite:function(devKey,testplanid,testcaseexternalid,buildid,notes,status,platformname,overwrite,user,bugid)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.reportTCResult</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testplanid</name><value><int>'+testplanid+'</int></value></member>'+
+	'<member><name>testcaseid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'<member><name>buildid</name><value><string>'+buildid+'</string></value></member>'+
+	'<member><name>notes</name><value><string>'+notes+'</string></value></member>'+
+	'<member><name>status</name><value><string>'+status+'</string></value></member>'+
+	'<member><name>platformname</name><value><string>'+platformname+'</string></value></member>'+
+	'<member><name>overwrite</name><value><boolean>'+overwrite+'</boolean></value></member>'+
+	'<member><name>user</name><value><string>'+user+'</string></value></member>'+
+	'<member><name>bugid</name><value><string>'+bugid+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+setTestCaseExecutionType:function(devKey,testprojectid,testcaseexternalid,version,executiontype)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.setTestCaseExecutionType</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+	'<member><name>testcaseexternalid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'<member><name>version</name><value><int>'+version+'</int></value></member>'+
+	'<member><name>executiontype</name><value><int>'+executiontype+'</int></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+getTestLinkVersion:function(devKey)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.testLinkVersion</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+updateTestCaseCustomFieldDesignValue:function(devKey,testprojectid,testcaseexternalid,version,custonfiledname,custonfiledvalue)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.updateTestCaseCustomFieldDesignValue</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testprojectid</name><value><int>'+testprojectid+'</int></value></member>'+
+	'<member><name>testcaseexternalid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'<member><name>version</name><value><int>'+version+'</int></value></member>'+
+	'<member><name>customfields</name><value><struct>'+
+	'<member><name>'+custonfiledname+'</name><value><string>'+custonfiledvalue+'</string></value></member>'+
+	'</struct></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
+},
+
+updateTestCase:function(devKey,testcaseexternalid,version,summary)
+{ return '<?xml version="1.0"?>'+
+	'<methodCall>'+
+	'<methodName>tl.updateTestCase</methodName>'+
+	'<params>'+
+	'<param><value><struct>'+
+	'<member><name>devKey</name><value><string>'+devKey+'</string></value></member>'+
+	'<member><name>testcaseexternalid</name><value><string>'+testcaseexternalid+'</string></value></member>'+
+	'<member><name>version</name><value><int>'+version+'</int></value></member>'+
+	'<member><name>summary</name><value><string>'+summary+'</string></value></member>'+
+	'</struct></value></param>'+
+	'</params></methodCall>';
 }
 
 };
